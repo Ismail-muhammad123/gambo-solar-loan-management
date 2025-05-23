@@ -137,7 +137,7 @@ if PROD:
             'NAME': os.environ["PGDATABASE"],
             'USER': os.environ["PGUSER"],
             'PASSWORD': os.environ["PGPASSWORD"],
-            'HOST': "ballast.proxy.rlwy.net", #os.environ["PGHOST"],
-            'PORT': 5432, #os.environ["PGPORT"],
+            'HOST': os.environ["PGHOST"],
+            'PORT': os.environ["PGPORT"],
         }
     }
