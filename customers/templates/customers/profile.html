@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+<div class="row mb-3">
+    <div class="col-3"><strong>Passport Photo:</strong></div>
+    <div class="col-9">
+        {% if request.user.customer.passport_photo %}
+        <img src="{{ request.user.customer.passport_photo.url }}" alt="Passport Photo" width="150" />
+        {% endif %}
+    </div>
+</div>
+<hr>
+<div class="row mb-3">
+    <div class="col-3"><strong>Full Name:</strong></div>
+    <div class="col-9">{{ request.user.customer.fullName }}</div>
+</div>
+<hr>
+<div class="row mb-3">
+    <div class="col-3"><strong>Phone:</strong></div>
+    <div class="col-9">{{ request.user.customer.phoneNumber }}</div>
+</div>
+<hr>
+<div class="row mb-3">
+    <div class="col-3"><strong>Alt Phone:</strong></div>
+    <div class="col-9">{{ request.user.customer.alternatePhoneNumber }}</div>
+</div>
+<hr>
+<div class="row mb-3">
+    <div class="col-3"><strong>Email:</strong></div>
+    <div class="col-9">{{ request.user.customer.email }}</div>
+</div>
+<hr>
+<div class="row mb-3">
+    <div class="col-3"><strong>Alt Email:</strong></div>
+    <div class="col-9">{{ request.user.customer.alternate_email }}</div>
+</div>
+<hr>
+<div class="row mb-3">
+    <div class="col-3"><strong>NIN:</strong></div>
+    <div class="col-9">{{ request.user.customer.nin }}</div>
+</div>
+<hr>
+<div class="row mb-3">
+    <div class="col-3"><strong>BVN:</strong></div>
+    <div class="col-9">{{ request.user.customer.bvn }}</div>
+</div>
+<hr>
+<div class="row mb-3">
+    <div class="col-3"><strong>Address:</strong></div>
+    <div class="col-9">{{ request.user.customer.address }}</div>
+</div>
+<hr>
+<h3>Your Loans</h3>
+<div class="table-responsive small">
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Status</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Period</th>
+                <th scope="col">Created</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for loan in loans %}
+            <tr>
+                <td>{{ forloop.counter|intcomma }}</td>
+                <td>{{ loan.get_status_display }}</td>
+                <td>₦{{ loan.total_amount|intcomma }}</td>
+                <td>{{ loan.period }} months</td>
+                <td>{{ loan.created_at|date:"Y-m-d" }}</td>
+                <td><a class="btn btn-primary btn-sm" href="{% url 'loan_detail' loan.id %}">View
+                        Details</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
