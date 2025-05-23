@@ -118,14 +118,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-PROD = os.environ.get("PRODUCTION", "true").lower() == "true"
+PROD = os.environ.get("PRODUCTION", "false").lower() == "true"
 
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 if PROD:
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-
-
     os.environ.get("PGDATABASE", "liftoff_dev")
     os.environ.get("PGUSER", "username")
     os.environ.get("PGPASSWORD", "")
