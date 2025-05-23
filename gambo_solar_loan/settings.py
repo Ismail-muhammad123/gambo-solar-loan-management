@@ -125,11 +125,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 if PROD:
-    os.environ.get("PGDATABASE", "liftoff_dev")
-    os.environ.get("PGUSER", "username")
-    os.environ.get("PGPASSWORD", "")
-    os.environ.get("PGHOST", "localhost")
-    os.environ.get("PGPORT", "5432")
+    # os.environ.get("PGDATABASE", "liftoff_dev")
+    # os.environ.get("PGUSER", "username")
+    # os.environ.get("PGPASSWORD", "")
+    # os.environ.get("PGHOST", "localhost")
+    # os.environ.get("PGPORT", "5432")
 
     DATABASES = {
         'default': {
@@ -137,7 +137,7 @@ if PROD:
             'NAME': os.environ["PGDATABASE"],
             'USER': os.environ["PGUSER"],
             'PASSWORD': os.environ["PGPASSWORD"],
-            'HOST': os.environ["PGHOST"],
-            'PORT': os.environ["PGPORT"],
+            'HOST': "ballast.proxy.rlwy.net", #os.environ["PGHOST"],
+            'PORT': 5432, #os.environ["PGPORT"],
         }
     }
